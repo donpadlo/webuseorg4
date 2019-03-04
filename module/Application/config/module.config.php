@@ -1,10 +1,4 @@
 <?php
-/**
- * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
- * @copyright Copyright (c) 2005-2016 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
-
 namespace Application;
 
 use Zend\Router\Http\Literal;
@@ -33,12 +27,24 @@ return [
                         'action'     => 'index',
                     ],
                 ],
-            ],
-        ],
+            ],                      
+            'user' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/user[/:action]',
+                    'defaults' => [
+                        'controller' => Controller\UserController::class,
+                        'action'     => 'index',
+                    ],
+                ],
+            ],                      
+                    
+        ],      
     ],
     'controllers' => [
         'factories' => [
-            Controller\IndexController::class => InvokableFactory::class,
+            Controller\IndexController::class => InvokableFactory::class,                        
+            Controller\UserController::class => InvokableFactory::class,                        
         ],
     ],
     'view_manager' => [
