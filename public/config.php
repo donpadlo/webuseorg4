@@ -3,7 +3,7 @@ return [
     'modules' => [
             'Zend\Router',
             'Zend\Validator',
-            'Application',
+            'Application',            
     ],
     'module_listener_options' => [
         'module_paths' => [
