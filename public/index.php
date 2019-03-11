@@ -3,6 +3,7 @@
 use Zend\Mvc\Application;
 use Zend\Stdlib\ArrayUtils;
 
+
 // в константу __DIR__ заносим текущий путь
 chdir(dirname(__DIR__));
 
@@ -14,6 +15,8 @@ if (! class_exists(Application::class)) {
         "Не могу запустить приложение\n -выполните`composer install`\n"
     );
 }
+
+$zxcv="!!!!!!!!!!!!!!!";
 
 // получаем настройки приложения
 $appConfig = require __DIR__ . '/config.php';

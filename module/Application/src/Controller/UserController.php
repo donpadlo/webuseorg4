@@ -3,6 +3,7 @@ namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Application\Common\CommonServices;
 
 class UserController extends AbstractActionController{
     public function indexAction(){

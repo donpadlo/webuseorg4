@@ -8,7 +8,6 @@ class CommonServices{
      $tt->getResponse()->getHeaders()->addHeader($cookie);
      $cc=$tt->getRequest()->getCookie("randomuserid4");
         if (isset($cc->randomuserid4)){
-            echo "!!";
             $ret["result"]=true;
         };
      return $mess;
