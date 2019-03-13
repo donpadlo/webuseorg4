@@ -19,6 +19,7 @@
         <?= $this->headScript()
             ->prependFile($this->basePath('components/bootstrap/js/bootstrap.min.js'))
             ->prependFile($this->basePath('components/jquery/jquery.min.js'))
+            ->prependFile($this->basePath('js/common.js'))
         ?>
     </head>
     <body>
@@ -52,6 +53,7 @@
           </div>
         </nav>
         <div class="container-fluid">
+            <?php echo $this->mess()->renderErrorMessages(); ?>
             <?= $this->content ?>
             <hr>
             <footer>

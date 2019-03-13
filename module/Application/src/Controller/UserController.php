@@ -3,10 +3,10 @@ namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Application\Common\CommonServices;
+use Application\Common\CommonFunctions;
 
 class UserController extends AbstractActionController{
-    public function indexAction(){
+    public function indexAction(){        
         return new ViewModel();
     }    
     public function userAction(){

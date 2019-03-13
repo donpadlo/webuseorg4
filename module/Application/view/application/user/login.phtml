@@ -1,12 +1,20 @@
 <?php
     $this->headTitle('Авторизация');
 ?>
-<div class="row">
-    <div class="col-sm">      
+<div class="container h-100">
+
+    <div class="row h-100 justify-content-center align-items-center">    
+        <form class="col-12" role="form" action="/user/login" method="post" name="login_from" target="_self">
+          <div class="form-group">
+            <label for="login_login">Логин</label>
+            <input class="form-control" id="login_login" name="login_login" placeholder="Введите логин">
+          </div>
+          <div class="form-group">
+            <label for="login_passord">Пароль</label>
+            <input type="password" class="form-control" id="login_password" name='login_password' placeholder="Введите пароль">
+          </div>
+          <button type="submit" class="btn btn-primary">Войти</button>
+        </form>
     </div>
-    <div class="col-sm">
-      Одна из трёх колонок
-    </div>
-    <div class="col-sm">      
-    </div>
+
 </div>

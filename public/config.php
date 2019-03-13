@@ -1,11 +1,9 @@
 <?php
 return [
-    'database'=>require 'dbconfig.php',                           
     'modules' => [
             'Zend\Router',
-            'Zend\Validator',
-            'Application', 
-            'Mymodule',
+            'Zend\Validator',            
+            'Application',             
     ],
     'module_listener_options' => [
         'module_paths' => [

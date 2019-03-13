@@ -16,9 +16,7 @@ if (! class_exists(Application::class)) {
     );
 }
 
-$zxcv="!!!!!!!!!!!!!!!";
-
 // получаем настройки приложения
 $appConfig = require __DIR__ . '/config.php';
-
+// запускаем приложение
 Application::init($appConfig)->run();
