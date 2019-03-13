@@ -1,5 +1,6 @@
 <?php
 namespace Application\Common;
+use Application\Common\CommonFunctions;
 class MySQL {
     var $idsqlconnection;
  // Идентификатор соединения с БД
@@ -21,8 +22,8 @@ class MySQL {
     function connect($host, $name, $pass, $base,$codemysql="utf8"){        
         $this->idsqlconnection = new \mysqli($host, $name, $pass, $base);
         if (mysqli_connect_errno()) {
-            $serr = mysqli_connect_error();
-            echo "Error connect to Mysql or select base: $serr";
+            $serr = mysqli_connect_error();            
+            CommonFunctions::$err[]="Ошибка соединения с MySQL или выбора базы: $serr";
             return $serr;
         } else {
             mysqli_query($this->idsqlconnection, "SET NAMES $codemysql");
@@ -37,6 +38,8 @@ class MySQL {
             ++ $this->num_queries;
             return $this->query_result;
         } else {
+              $serr = mysqli_error($this->idsqlconnection);            
+              CommonFunctions::$err[]="Ошибка выполнения запроса: $serr";                
             return false;
         }
     }

@@ -5,7 +5,7 @@ use Application\Common\CommonFunctions;
 use Application\Module;
 
 class Auth{
- public static $login=false;   // true,false - успешная или нет авторизация
+ public static $login=false; // true,false - успешная или нет авторизация
  public static $id="";       // идентификатор из БД для авторизированного пользователя
  public static $randomid=""; // случайный идентификатор для печенек
  public static $salt="";     // соль для пароля зашифрованного по SHA1
@@ -44,7 +44,7 @@ public function LoginCookies($name){
     if (self::GetCookies($name)!==false){
         $randomid=self::GetCookies($name);
         $sql="select * FROM users where randomid='$randomid' and archive=0";
-        $result=Module::$sqln->ExecuteSQL($sql);
+        $result=Module::$sqln->ExecuteSQL($sql);        
         while ($myrow = mysqli_fetch_array($result)) {
             self::$id = $myrow['id'];
             self::$randomid = $myrow['randomid'];

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5df6b31b4e3eb7da062b9f4eebd9f71d",
+    "content-hash": "54074f67a3a21362a333a0fe7ca86ba4",
     "packages": [
         {
             "name": "components/bootstrap",
@@ -260,6 +260,36 @@
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
             "homepage": "https://github.com/container-interop/container-interop",
             "time": "2017-02-14T19:40:03+00:00"
+        },
+        {
+            "name": "jQuery.mmenu",
+            "version": "7.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FrDH/jQuery.mmenu",
+                "reference": "abef33d0a70a539d2669dd4a94c2c72b18af267a"
+            },
+            "type": "library",
+            "license": [
+                "CC-BY-NC-4.0"
+            ],
+            "description": "The best jQuery plugin for app look-alike on- and off-canvas menus with sliding submenus for your website and webapp.",
+            "keywords": [
+                "app",
+                "curtain",
+                "list",
+                "listview",
+                "megamenu",
+                "menu",
+                "mmenu",
+                "mobile",
+                "navigation",
+                "off-canvas",
+                "on-canvas",
+                "panels",
+                "submenu"
+            ],
+            "time": "2019-02-20T19:14:45+00:00"
         },
         {
             "name": "psr/cache",
