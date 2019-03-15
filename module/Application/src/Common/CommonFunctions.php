@@ -4,7 +4,8 @@ use Zend\Http\Header\SetCookie;
 use Zend\Http\Response;
 
 class CommonFunctions{
- public static $err=array();       // список ошибок для показа пользователю на странице
+ public static $err=array();        // список ошибок для показа пользователю на странице
+ public static $ok=array();         // список сообщений для показа пользователю на странице
     
 /** Проверка, а есть ли содержимое $_GET[] и присвоение пустого значения или содержимого
  * @param type $name

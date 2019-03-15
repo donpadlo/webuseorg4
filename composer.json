@@ -1,5 +1,6 @@
 {
     "name": "webuseorg4",
+    "version": "4.0.0",
     "description": "Учет ТМЦ в организации",
     "type": "project",
     "license": "GPL v3",
@@ -29,7 +30,11 @@
     "autoload": {
         "psr-4": {
             "Application\\": "module/Application/src/"
-        }
+        }        
     },
-    "extra": []
+    "extra": [],
+    "scripts": {
+        "post-update-cmd": "php run/update.php",
+        "post-install-cmd": "php run/install.php"
+    }    
 }

@@ -16,5 +16,15 @@ public function renderErrorMessages() {
         echo '</div>';
     };
 }
+public function renderOkMessages() {    
+    foreach (CommonFunctions::$ok as $msg) {
+        echo '<div class="alert alert-info alert-dismissible fade show" role="alert">';
+        echo "<strong>$msg</strong>";
+        echo '<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+        echo '<span aria-hidden="true">&times;</span>';
+        echo '</button>';
+        echo '</div>';
+    };
+}
     
 }

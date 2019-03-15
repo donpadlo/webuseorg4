@@ -112,8 +112,14 @@ class Module {
                 ],
             ],
             'view_helpers' => [                    
-                    'factories' => [View\Helper\Messages::class => InvokableFactory::class],                   
-                    'aliases' => ['mess' => View\Helper\Messages::class],                                
+                    'factories' => [
+                        View\Helper\Messages::class => InvokableFactory::class,
+                        View\Helper\Megamenu::class => InvokableFactory::class
+                    ],                   
+                    'aliases' => [
+                        'mess' => View\Helper\Messages::class,
+                        'megamenu' => View\Helper\Megamenu::class
+                    ],                                               
                 ],                    
             'view_manager' => [
                 'display_not_found_reason' => true,
