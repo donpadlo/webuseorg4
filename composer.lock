@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "54074f67a3a21362a333a0fe7ca86ba4",
+    "content-hash": "8120e1f474b607844c2d2bb94fc3e969",
     "packages": [
         {
             "name": "components/bootstrap",
@@ -263,11 +263,11 @@
         },
         {
             "name": "jQuery.mmenu",
-            "version": "7.3.2",
+            "version": "7.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FrDH/jQuery.mmenu",
-                "reference": "abef33d0a70a539d2669dd4a94c2c72b18af267a"
+                "reference": "12eb943d3e7e7293c82a4ad74f15890495456dff"
             },
             "type": "library",
             "license": [
@@ -289,7 +289,7 @@
                 "panels",
                 "submenu"
             ],
-            "time": "2019-02-20T19:14:45+00:00"
+            "time": "2019-03-13T22:14:56+00:00"
         },
         {
             "name": "psr/cache",
