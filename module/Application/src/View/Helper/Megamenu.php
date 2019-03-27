@@ -4,7 +4,9 @@ use Zend\View\Helper\AbstractHelper;
 use Application\Common\CommonFunctions;
 // Этот класс помощника отображения меню
 class Megamenu extends AbstractHelper {  
-    public static $items=array();         // массив меню слева
+    public static $items=array();         // массив меню 
+    public static $leftitems=array();     // массив меню слева (кнопки)
+    public static $buttomitems=array();     // массив меню внизу (кнопки)
     public static $itemsquick=array();    // массив "быстрого" меню
     public function __construct() {    
     }    
@@ -37,6 +39,13 @@ class Megamenu extends AbstractHelper {
     public function AddQuickMenu($item){
         self::$itemsquick[]=$item;        
     }    
+    public function AddButtomMenu($item){
+        self::$buttomitems[]=$item;        
+    }       
+    public function AddLeftMenu($item){
+        self::$leftitems[]=$item;        
+    }       
+    
     public function Add($item){
         self::$items[]=$item;
     }
@@ -64,7 +73,7 @@ class Megamenu extends AbstractHelper {
                     Megamenu::RenderSubMenu($item["submenus"]);
                   echo "</li>\n";
               } else {
-                echo "<li><a href='".$item["href"]."'><i class='".$item["ico"]."'></i>".$item["name"]."</a></li>\n";                  
+                echo "<li><a title='".$item["title"]."' href='".$item["href"]."'><i class='".$item["ico"]."'></i>".$item["name"]."</a></li>\n";                  
               };
             };
             echo "</ul>\n";
@@ -72,8 +81,56 @@ class Megamenu extends AbstractHelper {
     }    
     public function RenderQuickMenu() {            
         foreach (self::$itemsquick as $item) {              
-            echo "<button type='button' class='".$item["class"]."'><i class='".$item["ico"]."' title='".$item["title"]."'></i></button>\n";
+            echo "<button title='".$item["title"]."' type='button' class='".$item["class"]."'><i class='".$item["ico"]."'></i></button>\n";
         };
         
     }
+    public function ViewJSMenu($tag) {                       
+    ?>
+    $(document).ready(function(){ 
+    $('#<?php echo "$tag"?>').mmenu({
+			"extensions": [
+                  "fx-menu-zoom",
+                  "fx-panels-zoom"
+               ],               
+                "counters": true,
+                "iconbar": {
+                  "add": true,
+                  "top": [
+<?php
+    self::$leftitems=Megamenu::MSort(self::$leftitems);
+    foreach (self::$leftitems as $item) {
+        echo "\"<a title='".$item["title"]."' href='".$item["href"]."'><i class='".$item["ico"]."'></i></a>\",\n";
+    };
+?>
+                  ]
+               },                
+                "navbars": [
+                      {
+                         "position": "top",
+                         "content": [
+                            "searchfield"
+                         ]
+                      },
+                      {
+                         "position": "bottom",
+                            "content": [
+                                <?php
+                                    self::$leftitems=Megamenu::MSort(self::$leftitems);
+                                    foreach (self::$buttomitems as $item) {
+                                        echo "\"<a title='".$item["title"]."' href='".$item["href"]."'><i class='".$item["ico"]."'></i></a>\",\n";
+                                    };
+                                ?>
+                            ]
+                      }
+                   ],               							
+			onClick: {
+				setSelected: true,
+				close: false
+			},                                                
+		},{language: "ru"});                		     
+     });
+
+     <?php
+    }    
 }

@@ -44,8 +44,8 @@ Megamenu::Add([
     "name"=>" Services"
 ]);    
 Megamenu::Add([
-    "href"=>"#",
+    "href"=>"/user/logout",
     "index"=>30,
     "ico"=>"fa fa-home fa-fw",
-    "name"=>" Logout"
+    "name"=>" Выйти"
 ]);        

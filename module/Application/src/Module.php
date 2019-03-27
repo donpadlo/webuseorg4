@@ -84,7 +84,7 @@ class Module {
                     'application' => [
                         'type'    => Segment::class,
                         'options' => [
-                            'route'    => '/application[/:action]',
+                            'route'    => '/menu[/:action]',
                             'defaults' => [
                                 'controller' => Controller\IndexController::class,
                                 'action'     => 'index',
@@ -114,11 +114,13 @@ class Module {
             'view_helpers' => [                    
                     'factories' => [
                         View\Helper\Messages::class => InvokableFactory::class,
-                        View\Helper\Megamenu::class => InvokableFactory::class
+                        View\Helper\Megamenu::class => InvokableFactory::class,
+                        View\Helper\Siteconfig::class => InvokableFactory::class
                     ],                   
                     'aliases' => [
                         'mess' => View\Helper\Messages::class,
-                        'megamenu' => View\Helper\Megamenu::class
+                        'megamenu' => View\Helper\Megamenu::class,
+                        'SiteConfig' => View\Helper\Siteconfig::class
                     ],                                               
                 ],                    
             'view_manager' => [
