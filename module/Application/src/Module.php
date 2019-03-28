@@ -13,6 +13,7 @@ use Application\Common\Auth;
 
 class Module {    
     public static $sqln; 
+    public static $url;
     public function __construct() {     
             // устанавливаем соединение с БД MySQL
             $config=Module::getConfig();
@@ -35,13 +36,24 @@ class Module {
               $viewModel = $event->getViewModel();                  
               $viewModel->setTemplate('layout/layout');               
               $uri = $event->getRequest()->getUri();                
-              $patch = $uri->getPath();              
+              $patch = $uri->getPath();  
+              self::$url=$patch;
                 Auth::LoginCookies("randomid4");
                 Auth::LoginPOST();        
                 if (Auth::$login==true){
                     Auth::SetCookies("randomid4",Auth::$randomid);
                 };
                 $response=null;
+                if ($patch=="/user/logout"){                    
+                      Auth::SetCookies("randomid4","");
+                      $viewModel = $event->getViewModel();                  
+                      $viewModel->setTemplate('layout/login');                                     
+                      $uri->setPath('/user/login');
+                      $response=$event->getResponse();
+                      $response->getHeaders()->addHeaderLine('Location', $uri);
+                      $response->setStatusCode(301);
+                      $response->sendHeaders();                                        
+                };                
                 if (($patch!="/user/login") and (Auth::$login==false)){  
                       $viewModel = $event->getViewModel();                  
                       $viewModel->setTemplate('layout/login');                                     
@@ -54,7 +66,7 @@ class Module {
                 if (($patch=="/user/login") and (Auth::$login==true)){                    
                       $viewModel = $event->getViewModel();                  
                       $viewModel->setTemplate('layout/layout');                                                                       
-                      $uri->setPath('/application/index');
+                      $uri->setPath('/menu/index');
                       $response=$event->getResponse();
                       $response->getHeaders()->addHeaderLine('Location', $uri);
                       $response->setStatusCode(301);
@@ -131,7 +143,7 @@ class Module {
                 'exception_template'       => 'error/index',
                 'template_map' => [
                     'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
-                    'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
+                    'menu/index/index' => __DIR__ . '/../view/application/index/index.phtml',
                     'error/404'               => __DIR__ . '/../view/error/404.phtml',
                     'error/index'             => __DIR__ . '/../view/error/index.phtml',
                 ],

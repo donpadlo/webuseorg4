@@ -1,9 +1,9 @@
 <?= $this->doctype() ?>
+<?= $this->megamenu()->load();   ?>
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <?= $this->headTitle($this->SiteConfig()->Title())->setSeparator(' - ')->setAutoEscape(false) ?>
-
+        <?= $this->headTitle($this->megamenu()->GetCurrentTitleByUrl()." | ".$this->SiteConfig()->Title())->setSeparator(' - ')->setAutoEscape(false) ?>
         <?= $this->headMeta()
             ->appendName('viewport', 'width=device-width, initial-scale=1.0')
             ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
@@ -23,16 +23,16 @@
             ->prependFile($this->basePath('components/jquery/jquery.min.js'))                
         ?>
     </head>
-    <body>
+    <body>        
 	<div class="header">
-		<a href="#menu"></a>
-                <?= $this->megamenu()->load();   ?>
+		<a href="#menu"></a>                
                 <?= $this->megamenu()->RenderQuickMenu();?>
 	</div>     
         <?= $this->megamenu()->RenderMegaMenu("menu");?>
         <div class="container-fluid">
             <?php echo $this->mess()->renderErrorMessages(); ?>
             <?= $this->content ?>
+            <?php echo $this->megamenu()->RenderBreadcrumbs(); ?>
             <hr>
             <footer>
                 <p>&copy; 2011 - <?= date('Y') ?> by <a target="_blank"href="https://грибовы.рф">Pavel Gribov</a></p>

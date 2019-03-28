@@ -7,7 +7,7 @@ Megamenu::Add([
         "name"=>" Our work"
 ]);    
 Megamenu::Add([
-    "href"=>"",
+    "href"=>"#",
     "index"=>10,
     "ico"=>"fa fa-home fa-fw",
     "name"=>" About us",
@@ -23,9 +23,10 @@ Megamenu::Add([
                         "ico"=>"fa fa-home fa-fw",
                         "name"=>" History 2",
                             "submenus"=>[
-                                            [   "href"=>"#",
+                                            [   "href"=>"/menu/hello",
                                                 "ico"=>"fa fa-home fa-fw",
                                                 "name"=>" History 2-2",
+                                                "title"=>"Хлебные крошки тест"
                                                 ]
                                 ]
                         ],                

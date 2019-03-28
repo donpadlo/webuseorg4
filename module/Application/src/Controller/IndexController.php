@@ -20,11 +20,16 @@ class IndexController extends AbstractActionController{
         return new ViewModel();
         //return new ViewModel(["message"=>CommonServices::IsGuest($this,$this->dbconnection)]);
     }
+    public function helloAction(){    
+        
+        return new ViewModel();
+        //return new ViewModel(["message"=>CommonServices::IsGuest($this,$this->dbconnection)]);
+    }    
     public function aboutAction(){
-           if (Auth::GetCookies("randomid4")==false){            
-            $viewModel = new ViewModel();
-            $viewModel->setTemplate('application/user/login');                       
-           };
+//           if (Auth::GetCookies("randomid4")==false){            
+//            $viewModel = new ViewModel();
+//            $viewModel->setTemplate('menu/user/login');                       
+//           };
         
         return $viewModel;        
     }
