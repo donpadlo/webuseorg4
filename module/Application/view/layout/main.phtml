@@ -9,14 +9,17 @@
             ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
         ?>
         <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])                   
+            ->prependStylesheet('/css/main.css')        
             ->prependStylesheet('/css/mmenu.css')        
+            ->prependStylesheet($this->basePath('/css/jquery.toastmessage.css'))                                                       
             ->prependStylesheet($this->basePath('components/bootstrap/css/bootstrap.min.css'))
-            ->prependStylesheet($this->basePath('components/font-awesome/css/fontawesome-all.min.css'))        
+            ->prependStylesheet($this->basePath('components/font-awesome/css/fontawesome-all.min.css'))                    
             ->prependStylesheet($this->basePath('/js/jQuery.mmenu/dist/jquery.mmenu.all.css'))                                               
             
         ?>
         <?= $this->headScript()
             ->prependFile($this->basePath('js/common.js'))        
+            ->prependFile($this->basePath('js/jquery.toastmessage.js'))        
             ->prependFile($this->basePath('components/bootstrap/js/bootstrap.min.js'))            
             ->prependFile($this->basePath('/js/jQuery.mmenu/dist/translations/ru/jquery.mmenu.ru.js'))                    
             ->prependFile($this->basePath('/js/jQuery.mmenu/dist/jquery.mmenu.all.js'))                    

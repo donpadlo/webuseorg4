@@ -3,8 +3,8 @@ use Application\View\Helper\Megamenu;
 Megamenu::AddQuickMenu([
     "class"=>"btn btn-outline-dark btn-sm",
     "ico"=>"fa fa-home",
-    "href"=>"#",
-    "title"=>"title button"
+    "href"=>"/",
+    "title"=>"Перейти на главную страницу"
 ]);
 Megamenu::AddQuickMenu([
     "class"=>"btn btn-outline-dark btn-sm",
@@ -26,9 +26,9 @@ Megamenu::AddQuickMenu([
 ]);
 Megamenu::AddQuickMenu([
     "class"=>"btn btn-outline-dark btn-sm",
-    "ico"=>"fa fa-home",
-    "href"=>"#",
-    "title"=>"title button"
+    "ico"=>"fa fa-bolt fa-fw",
+    "href"=>"/user/logout",
+    "title"=>"Бла Бла"
 ]);
 Megamenu::AddQuickMenu([
     "class"=>"btn btn-outline-dark btn-sm",

@@ -24,7 +24,7 @@ Megamenu::Add([
                         "name"=>" History 2",
                             "submenus"=>[
                                             [   "href"=>"/menu/hello",
-                                                "ico"=>"fa fa-home fa-fw",
+                                                "ico"=>"fa fa-bolt fa-fw",
                                                 "name"=>" History 2-2",
                                                 "title"=>"Хлебные крошки тест"
                                                 ]

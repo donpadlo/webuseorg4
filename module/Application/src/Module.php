@@ -34,7 +34,7 @@ class Module {
               $controllerClass = get_class($controller);
               $moduleNamespace = substr($controllerClass, 0, strpos($controllerClass, '\\'));
               $viewModel = $event->getViewModel();                  
-              $viewModel->setTemplate('layout/layout');               
+              $viewModel->setTemplate('layout/main');               
               $uri = $event->getRequest()->getUri();                
               $patch = $uri->getPath();  
               self::$url=$patch;
@@ -65,7 +65,7 @@ class Module {
                 };                        
                 if (($patch=="/user/login") and (Auth::$login==true)){                    
                       $viewModel = $event->getViewModel();                  
-                      $viewModel->setTemplate('layout/layout');                                                                       
+                      $viewModel->setTemplate('layout/main');                                                                       
                       $uri->setPath('/menu/index');
                       $response=$event->getResponse();
                       $response->getHeaders()->addHeaderLine('Location', $uri);
@@ -114,13 +114,24 @@ class Module {
                             ],
                         ],
                     ],                      
-
+                    // серверные операции, без отображения страниц
+                    'server' => [
+                        'type'    => Segment::class,
+                        'options' => [
+                            'route'    => '/server[/:action]',
+                            'defaults' => [
+                                'controller' => Controller\ServerController::class,
+                                'action'     => 'index',
+                            ],
+                        ],
+                    ],                      
                 ],      
             ],
             'controllers' => [
                 'factories' => [
-                    Controller\IndexController::class => InvokableFactory::class,                        
-                    Controller\UserController::class => InvokableFactory::class,                        
+                    Controller\IndexController::class => InvokableFactory::class, // Основные классы для работы                       
+                    Controller\UserController::class => InvokableFactory::class,  // Авторизация                      
+                    Controller\ServerController::class => InvokableFactory::class,// Серверные классы                        
                 ],
             ],
             'view_helpers' => [                    
@@ -142,7 +153,7 @@ class Module {
                 'not_found_template'       => 'error/404',
                 'exception_template'       => 'error/index',
                 'template_map' => [
-                    'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
+                    'layout/main'           => __DIR__ . '/../view/layout/main.phtml',
                     'menu/index/index' => __DIR__ . '/../view/application/index/index.phtml',
                     'error/404'               => __DIR__ . '/../view/error/404.phtml',
                     'error/index'             => __DIR__ . '/../view/error/index.phtml',

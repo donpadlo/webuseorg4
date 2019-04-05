@@ -1,0 +1,19 @@
+.breadcrumb-item-quick {
+    right: 30px;
+    display: flow-root;
+    text-align: right;
+    position: absolute;
+    cursor: pointer;
+}
+.breadcrumb-item-quick::before{
+    content: "" !important;
+}
+.displaycontent{
+    display: contents !important;
+}
+#user_quick_menu_div {
+    display: contents !important;
+}
+#quick_menu_div {
+    display: contents !important;
+}
