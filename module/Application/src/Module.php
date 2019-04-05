@@ -125,6 +125,17 @@ class Module {
                             ],
                         ],
                     ],                      
+                    // модуль настроек
+                    'config' => [
+                        'type'    => Segment::class,
+                        'options' => [
+                            'route'    => '/config[/:action]',
+                            'defaults' => [
+                                'controller' => Controller\ConfigController::class,
+                                'action'     => 'index',
+                            ],
+                        ],
+                    ],                                          
                 ],      
             ],
             'controllers' => [
@@ -132,6 +143,7 @@ class Module {
                     Controller\IndexController::class => InvokableFactory::class, // Основные классы для работы                       
                     Controller\UserController::class => InvokableFactory::class,  // Авторизация                      
                     Controller\ServerController::class => InvokableFactory::class,// Серверные классы                        
+                    Controller\ConfigController::class => InvokableFactory::class,// Настройки
                 ],
             ],
             'view_helpers' => [                    

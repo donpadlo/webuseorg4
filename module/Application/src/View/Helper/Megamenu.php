@@ -156,16 +156,17 @@ class Megamenu extends AbstractHelper {
         return $res;        
     }
     public function GetCurrentTitleByUrl() {       
-        $res="Без заголовка";
+        $res="Без заголовка |";
         foreach (self::$dirtitems as $value) {            
             if (($value["href"]==Module::$url) and (isset($value["title"])==true)){                
-                $res=$value["title"]; 
+                $res=$value["title"]." | "; 
                 break;
             };
             if (isset($value["title"])==true){
-                $res=Megamenu::GetCurrentTitleByUrlSub($value,$res);                        
+                $res=Megamenu::GetCurrentTitleByUrlSub($value,$res)." | ";                        
             };
         }
+        if ((Module::$url=="") or (Module::$url=="/")) $res="";
         return $res;
     }
     public function RenderBreadcrumbsSub($parent) {   

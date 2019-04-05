@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <?= $this->headTitle($this->megamenu()->GetCurrentTitleByUrl()." | ".$this->SiteConfig()->Title())->setSeparator(' - ')->setAutoEscape(false) ?>
+        <?= $this->headTitle($this->megamenu()->GetCurrentTitleByUrl().$this->SiteConfig()->Title())->setSeparator(' - ')->setAutoEscape(false) ?>
         <?= $this->headMeta()
             ->appendName('viewport', 'width=device-width, initial-scale=1.0')
             ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')

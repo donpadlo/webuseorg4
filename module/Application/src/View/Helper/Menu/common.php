@@ -39,10 +39,11 @@ Megamenu::Add([
                     ]
 ]);    
 Megamenu::Add([
-    "href"=>"#",
+    "href"=>"/config/index",
     "index"=>20,
-    "ico"=>"fa fa-home fa-fw",
-    "name"=>" Services"
+    "ico"=>"fa fa-snowflake fa-fw",
+    'title'=> "Настройка системы",
+    "name"=>" Настройки"
 ]);    
 Megamenu::Add([
     "href"=>"/user/logout",
