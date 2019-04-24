@@ -16,9 +16,10 @@
         ?>
 
         <?= $this->headScript()
+            ->prependFile($this->basePath('js/common.js'))            
+            ->prependFile($this->basePath('js/capcha.js'))        
             ->prependFile($this->basePath('components/bootstrap/js/bootstrap.min.js'))
             ->prependFile($this->basePath('components/jquery/jquery.min.js'))
-            ->prependFile($this->basePath('js/common.js'))
         ?>
     </head>
 <body>    

@@ -9,6 +9,8 @@ use Application\Module;
 use Application\View\Helper\Megamenu;
 
 class ServerController extends AbstractActionController{
+    
+    
     /**
      * Сохраняем быструю ссылку пользователя
      * @return type

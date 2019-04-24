@@ -36,6 +36,17 @@ public function generateSalt() {
 	return $salt;
 }
 /**
+ * Результат - случайная строка длинной N
+ * @return type
+ */
+public function GetRandomId($n) {
+	$id = '';
+	for ($i = 1; $i <= $n; $i++) {
+		$id .= chr(rand(48, 56));
+	}
+	return $id;    
+}
+/**
  * Получение значения хранимого параметра по имени параметра
  *
  * @global type $sqlcn

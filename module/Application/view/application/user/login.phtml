@@ -13,8 +13,17 @@
             <label for="login_passord">Пароль</label>
             <input type="password" class="form-control" id="login_password" name='login_password' placeholder="Введите пароль">
           </div>
-          <button type="submit" class="btn btn-primary">Войти</button>
+          <div id="capcha" name="capcha"></div>
+          <button type="submit" class="btn btn-primary">Войти</button>          
         </form>
     </div>
-
 </div>
+
+
+<script>
+$(function() {      
+    $("#capcha").Capcha({
+       caption: "Введите число"
+    });
+});    
+</script>    

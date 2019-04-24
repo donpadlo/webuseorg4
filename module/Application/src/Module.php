@@ -38,12 +38,32 @@ class Module {
               $uri = $event->getRequest()->getUri();                
               $patch = $uri->getPath();  
               self::$url=$patch;
+                $sessionid=Auth::SessionId(); //устанавливаю сессионные куки если нет
+                // если запрос капчи, то отдаю
+                if ($patch=="/server/capcha"){
+                    $rs["result"]=false;
+                    $capcha= rand(0,100);
+                    $sql="update sessions set capchavalue=$capcha where sessionid='$sessionid'";
+                    $result=Module::$sqln->ExecuteSQL($sql);        
+                    
+                    $sql="select capcha,capchavalue,cnt from sessions where sessionid='$sessionid'";
+                    $result=Module::$sqln->ExecuteSQL($sql);        
+                    while ($myrow = mysqli_fetch_array($result)) {
+                        $rs["capchavalue"]=$myrow["capchavalue"];
+                        $rs["capcha"]=$myrow["capcha"];
+                        $rs["cnt"]=$myrow["cnt"];                        
+                        $rs["result"]=true;
+                    };
+                    header("Content-type: application/json");                    
+                    die(json_encode($rs));
+                };  
+                
                 Auth::LoginCookies("randomid4");
                 Auth::LoginPOST();        
                 if (Auth::$login==true){
                     Auth::SetCookies("randomid4",Auth::$randomid);
                 };
-                $response=null;
+                $response=null;                 
                 if ($patch=="/user/logout"){                    
                       Auth::SetCookies("randomid4","");
                       $viewModel = $event->getViewModel();                  
@@ -75,7 +95,8 @@ class Module {
                 if (($patch=="/user/login") and (Auth::$login==false)){
                       $viewModel = $event->getViewModel();                  
                       $viewModel->setTemplate('layout/login');                                     
-                };                
+                };   
+                
                return $response;
     }        
     public function getConfig(){            

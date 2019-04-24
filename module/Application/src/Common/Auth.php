@@ -47,6 +47,29 @@ public function GetCookies($name){
 public function SetCookies($name,$value){     
      SetCookie($name,$value,strtotime('+30 days'),'/');  
  }
+ 
+ public function SessionId(){
+     if (self::GetCookies("sessionid")==false){
+         $sessionid=CommonFunctions::GetRandomId(100);
+         self::SetCookies("sessionid",$sessionid);
+         $capcha= rand(0,100);
+         $sql="insert into sessions (id,sessionid,dt,capchavalue,capcha,cnt) values (null,'$sessionid',now(),$capcha,false,0)";
+         $result=Module::$sqln->ExecuteSQL($sql);        
+     } else {
+         $sessionid=self::GetCookies("sessionid");
+         $capcha= rand(0,100);
+         $sql="insert into sessions (id,sessionid,dt,capchavalue,capcha,cnt) values (null,'$sessionid',now(),$capcha,false,0) ON DUPLICATE KEY update capcha=false,dt=now(),cnt=cnt+1";         
+         $result=Module::$sqln->ExecuteSQL($sql);                          
+     };
+     // если попыток входа более 10, то ставим флажок "показывать капчу"
+     $sql="update sessions set capcha=true where cnt>10";
+     $result=Module::$sqln->ExecuteSQL($sql);      
+     // да и сессии заодно почистим старые
+     $sql="delete from sessions where datediff(dt,now())>0";
+     $result=Module::$sqln->ExecuteSQL($sql);           
+     return $sessionid;
+ }
+ 
 /**
  * Попытка авторизации по cookes
  * @param type $name
@@ -60,9 +83,32 @@ public function LoginCookies($name){
             self::$id = $myrow['id'];
             self::$randomid = $myrow['randomid'];
             self::$login=true;            
+            $sessionid=self::SessionId();
+            $capcha= rand(0,100);
+            $sql="insert into sessions (id,sessionid,dt,capchavalue,capcha,cnt) values (null,'$sessionid',now(),$capcha,true,0) ON DUPLICATE KEY update capcha=true,dt=now(),cnt=0";         
+            $result=Module::$sqln->ExecuteSQL($sql);                                      
+            
         };        
-        if (self::$login==false){CommonFunctions::$err[]="Пользователь не найден по cookies";};
+        if (self::$login==false){
+            CommonFunctions::$err[]="Пользователь не найден по cookies";            
+            $sessionid=self::SessionId();
+            $capcha= rand(0,100);
+            $sql="insert into sessions (id,sessionid,dt,capchavalue,capcha,cnt) values (null,'$sessionid',now(),$capcha,true,0) ON DUPLICATE KEY update capcha=true,dt=now(),capchavalue=$capcha,cnt=cnt+1";         
+            $result=Module::$sqln->ExecuteSQL($sql);                                      
+        };
     };
+}
+public function ReadyCapcha($sessionid){    
+ $res=false;   
+ $sql="select * from sessions where sessionid='$sessionid'";   
+ $result=Module::$sqln->ExecuteSQL($sql);
+   while ($myrow = mysqli_fetch_array($result)) {
+     $capchavalue=$myrow["capchavalue"];             
+     $capcha=$myrow["capcha"];        
+     if ($capcha==0){$res=true;};
+     if ($capchavalue==CommonFunctions::_POST("capcha")){$res=true;};
+   };
+ return $res;
 }
 /**
  * Попытка авторизации по POST текщей страницы
@@ -77,7 +123,19 @@ public function LoginPOST(){
             self::$randomid = $myrow['randomid'];
             self::$login=true;            
         };
-        if (self::$login==false){CommonFunctions::$err[]="Логин или пароль не верен";};        
+        $sessionid=self::SessionId();
+        //проверяем капчу...
+        if (self::ReadyCapcha($sessionid)==false){
+            self::$login=false;
+            CommonFunctions::$err[]="Не верно введена капча";
+        };
+        ///
+        if (self::$login==false){
+            CommonFunctions::$err[]="Логин или пароль не верен";
+            $capcha= rand(0,100);
+            $sql="insert into sessions (id,sessionid,dt,capchavalue,capcha,cnt) values (null,'$sessionid',now(),$capcha,true,0) ON DUPLICATE KEY update capcha=true,dt=now(),capchavalue=$capcha,cnt=cnt+1";         
+            $result=Module::$sqln->ExecuteSQL($sql);                                                  
+        };        
     };
 }
 
