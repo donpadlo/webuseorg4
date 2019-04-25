@@ -11,11 +11,11 @@ use Application\View\Helper\Megamenu;
 class ConfigController extends AbstractActionController{
 
     public function indexAction(){    
-        $response = $this->getResponse();
-        $headers = $response->getHeaders();
-        $headers->addHeaderLine("Content-type: application/json");
-        $response->setContent(json_encode(["result" => "ok"]));
-        return $this->getResponse();        
+        $viewModel = new ViewModel();
+        if (Auth::$rules["admin"]==true){
+            $viewModel->setTemplate('application/config/norules');            
+        };
+        return $viewModel;
     }    
     
 }
