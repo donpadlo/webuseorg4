@@ -2,11 +2,11 @@
 use Application\View\Helper\Megamenu;
 
 Megamenu::Add([
-        "href"=>"#",
+        "href"=>"/",
         "index"=>0,
         "ico"=>"fa fa-home fa-fw",
-        "name"=>" Home me",
-        "title"=>"Домой!!"
+        "name"=>" Главная",
+        "title"=>"Перейти на главную страницу"
     ]);           
 Megamenu::Add([
         "href"=>"/menu/about",

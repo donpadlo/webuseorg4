@@ -1,1 +1,83 @@
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">Основное</a></li>
+    <li><a href="#tabs-2">Уведомления</a></li>
+    <li><a href="#tabs-3">Сведения</a></li>
+  </ul>
+  <div id="tabs-1">
 
+    <label for="site_title">Название сайта</label>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" id="site_title" aria-describedby="basic-addon3" placeholder="Учет ТМЦ" value="<?= $site_title ?>">
+    </div>      
+      
+  </div>
+  <div id="tabs-2">
+    <div class="form-group form-check">
+       <input type="checkbox" class="form-check-input" id="check_events" name="check_events" checked="<?= $check_events ?>">
+       <label class="form-check-label" for="check_events">Уведомлять о событиях</label>
+     </div>    
+    <p class="lead">Настройки SMTP</p>          
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">От кого:</span>
+      </div>
+      <input type="text" class="form-control" name="smtp_from" id="smtp_from" aria-describedby="basic-addon3" placeholder="Вальдемар Буратинов"  value="<?= $smtp_from ?>">
+    </div>    
+    <div class="input-group mb-3">        
+      <div class="input-group-prepend">
+        <span class="input-group-text">Сервер:</span>
+      </div>
+      <input type="text" class="form-control" name="smtp_server" id="smtp_server" aria-describedby="basic-addon3" placeholder="mail.moyserver.ru" value="<?= $smtp_server ?>">
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Порт:</span>
+      </div>
+      <input type="text" class="form-control" name="smtp_port" id="smtp_port" aria-describedby="basic-addon3" placeholder="25" value="<?= $smtp_port ?>">
+    </div>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Логин:</span>
+      </div>
+      <input type="text" class="form-control" name="smtp_login" id="smtp_login" aria-describedby="basic-addon3" placeholder="pavel@moyserver.ru" value="<?= $smtp_login ?>">
+    </div>      
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Пароль:</span>
+      </div>
+      <input type="password" class="form-control" name="smtp_pass" id="smtp_pass" aria-describedby="basic-addon3" placeholder="1122" value="<?= $smtp_pass ?>">
+    </div>      
+      
+  </div>
+  <div id="tabs-3">
+        Версия ядра: <?= $core_version ?><br/>
+        - jQuery: <span id="vjq"></span><br/>
+        - jQueryUI: <span id="vjqui"></span><br/>
+        - Mmenu: <span id="vmm"></span><br/>
+  </div>
+</div>
+<p align="right">
+    <button onclick="SaveConfig();"type="button" class="btn btn-primary">Сохранить изменения</button>
+</p>
+<script>
+function SaveConfig(){
+            $.post("/config/saveconfig",{
+		site_title:$("#site_title").val(),
+                check_events:check_events.checked,
+		smtp_from:$("#smtp_from").val(),
+		smtp_server:$("#smtp_server").val(),
+		smtp_port:$("#smtp_port").val(),
+		smtp_login:$("#smtp_login").val(),
+		smtp_pass:$("#smtp_pass").val(),
+	    }, function(data){
+                $().toastmessage('showSuccessToast',data.result);
+            });          
+}; 
+$(function() {  
+    $("#tabs" ).tabs();
+    $("#vjq").html(jQuery.fn.jquery);
+    $("#vjqui").html($.ui.version);
+    $("#vmm").html(jQuery.mmenu.version);
+});    
+</script>

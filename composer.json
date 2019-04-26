@@ -8,7 +8,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^5.6 || ^7.0",
+        "php": "^5.6 || ^7.0",        
         "zendframework/zend-component-installer": "^1.0 || ^0.7 || ^1.0.0-dev@dev",
         "zendframework/zend-mvc": "^3.0.1",
         "zendframework/zend-modulemanager": "2.*",
@@ -21,18 +21,20 @@
         "components/jquery":"3.3.1",
         "components/jqueryui":"1.12.1",
         "components/font-awesome":"5.*",
-        "components/bootstrap":"4.1.1",        
-        "jQuery.mmenu":"7.*"
+        "components/bootstrap":"4.1.1",                
+        "jQuery.mmenu":"7.*",
+        "free-jqgrid":"dev-master"
     },
     "repositories": [
-        { "type": "git", "url": "https://github.com/FrDH/jQuery.mmenu" }
+        { "type": "git", "url": "https://github.com/FrDH/jQuery.mmenu" },
+        { "type": "git", "url": "https://github.com/donpadlo/jqGrid" }
     ],    
     "autoload": {
         "psr-4": {
             "Application\\": "module/Application/src/"
         }        
     },
-    "extra": [],
+    "extra": {},
     "scripts": {
         "post-update-cmd": "php run/update.php",
         "post-install-cmd": "php run/install.php"

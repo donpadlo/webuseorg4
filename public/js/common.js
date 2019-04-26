@@ -23,3 +23,14 @@ function AddSubQuickMenu(cururl){
         };        
     });
 }
+/**
+ * Добавить реакцию на событие изменение размера окна - меням размер грида
+ * по размерам таблицы контента
+ * @param {type} selector
+ * @return {undefined}
+ */
+function BindResizeble(selector,contentselector){
+    $(window).bind('resize', function() {
+        $(selector).setGridWidth($(contentselector).width());
+    }).trigger('resize');  
+}

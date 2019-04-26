@@ -9,6 +9,26 @@ Megamenu::Add([
 Megamenu::Add([
     "href"=>"#",
     "index"=>10,
+    "ico"=>"fa fa-address-book",
+    "name"=>" Справочники",
+        "submenus"=>[
+                        [
+                        "href"=>"/user/index",
+                        "ico"=>"fa fa-address-book fa-fw",
+                        "name"=>" Пользователи",
+                        "title"=>"Справочник пользователей системы"
+                        ],                        
+                        [
+                        "href"=>"#",
+                        "index"=>10,
+                        "ico"=>"fa fa-home fa-fw",
+                        "name"=>" History 3"                            
+                        ]
+                    ]
+]); 
+Megamenu::Add([
+    "href"=>"#",
+    "index"=>10,
     "ico"=>"fa fa-home fa-fw",
     "name"=>" About us",
         "submenus"=>[

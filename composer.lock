@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c8bba2a6db31200be13980ae89e6894e",
+    "content-hash": "e43ab2f68a19662cb433ce0305f10c33",
     "packages": [
         {
             "name": "components/bootstrap",
@@ -260,6 +260,37 @@
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
             "homepage": "https://github.com/container-interop/container-interop",
             "time": "2017-02-14T19:40:03+00:00"
+        },
+        {
+            "name": "free-jqgrid",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/donpadlo/jqGrid",
+                "reference": "ff56a713e40a9887d7d99e9aec1f141123256ea5"
+            },
+            "type": "library",
+            "license": [
+                "(MIT OR GPL-2.0)"
+            ],
+            "description": "grid as jQuery plugin - fork of jqGrid before licensing change",
+            "keywords": [
+                "JavaScript",
+                "Subgrid",
+                "TreeGrid",
+                "editing",
+                "grid",
+                "grid",
+                "grouping",
+                "jQuery",
+                "jQuery",
+                "jqGrid",
+                "paging",
+                "searching",
+                "sorting",
+                "table"
+            ],
+            "time": "2019-04-25T13:49:39+00:00"
         },
         {
             "name": "jQuery.mmenu",
@@ -1523,7 +1554,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "zendframework/zend-component-installer": 20
+        "zendframework/zend-component-installer": 20,
+        "free-jqgrid": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

@@ -1,1 +1,62 @@
-hello all
+<div style="margin-top:20px">
+  <table id="list1"></table>
+  <div id="pager1"></div>
+</div>
+<script>
+$(document).ready(function(){				
+			$("#list1").jqGrid({
+                                url:'/user/listusers',
+				datatype: "json",				
+                                colNames:['Id','Архив','Логин','Пароль','Действия'],
+                                colModel:[
+                                        {name:'id',index:'id', width:55,editable:false,search: false},
+                                        {name:'archive',index:'archive', width:60,editable:true,formatter: 'checkbox',edittype: 'checkbox', editoptions: {value: '1:0'},search: false},
+                                        {name:'login',index:'login', width:100,editable:true},
+                                        {name:'password',index:'password', width:100,editable:true,search: false},
+                                        {name:'myac', width:50, fixed:true, sortable:false, resize:false, formatter:'actions',formatoptions:{keys:true},search: false}
+                                ],  			
+				sortname: 'id',
+				sortorder: 'asc',
+				sortable: true,
+				height: 'auto',
+				pager: '#pager1',
+				viewrecords: true,
+				gridview: true,
+				autowidth: true,
+				altRows: true,
+				closeOnEscape: true,
+				autoresizeOnLoad: true,
+				headertitles: true,
+                                editurl:"/user/listusers",
+                                caption:"Справочник пользователей"
+			});			
+			$("#list1").navGrid("#pager1",{
+				search: true,
+				add: true,
+				edit: true,
+				del: true,
+				refresh: true
+				},
+				{}, //edit options
+				{}, //add options
+				{}, //delete options
+				{
+					multipleSearch: true
+					,closeAfterSearch: true
+					,closeAfterReset: true									
+				}
+			);
+                        jQuery('#list1').jqGrid('filterToolbar', {stringResult: true, searchOnEnter: false});						
+                        // Выбор колонок                        
+			$("#list1").navButtonAdd('#pager1',{
+				caption: "<i class=\"fa fa-table\" aria-hidden=\"true\"></i>",
+				title: "Выбор колонок",				
+                                buttonicon: 'none',
+				onClickButton: function () {
+					$("#list1").jqGrid('columnChooser');
+				}
+			});	
+                        //Делаем таблицу резиновой
+                        BindResizeble("#list1","#maincontent");
+		});	    
+</script>    

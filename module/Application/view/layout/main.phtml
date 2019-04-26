@@ -1,3 +1,4 @@
+<?php use Application\Common\Auth;?>
 <?= $this->doctype() ?>
 <?= $this->megamenu()->load();   ?>
 <html lang="en">
@@ -11,18 +12,24 @@
         <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])                   
             ->prependStylesheet('/css/main.css')        
             ->prependStylesheet('/css/mmenu.css')        
-            ->prependStylesheet($this->basePath('/css/jquery.toastmessage.css'))                                                       
+            ->prependStylesheet($this->basePath('css/jquery.toastmessage.css'))                                                       
+            ->prependStylesheet($this->basePath('js/free-jqgrid/plugins/css/ui.multiselect.min.css'))
+            ->prependStylesheet($this->basePath('js/free-jqgrid/css/ui.jqgrid.min.css'))
             ->prependStylesheet($this->basePath('components/bootstrap/css/bootstrap.min.css'))
+            ->prependStylesheet($this->basePath('components/jqueryui/themes/'.Auth::$theme.'/jquery-ui.min.css'))
             ->prependStylesheet($this->basePath('components/font-awesome/css/fontawesome-all.min.css'))                    
-            ->prependStylesheet($this->basePath('/js/jQuery.mmenu/dist/jquery.mmenu.all.css'))                                               
+            ->prependStylesheet($this->basePath('js/jQuery.mmenu/dist/jquery.mmenu.all.css'))                                               
             
         ?>
         <?= $this->headScript()
             ->prependFile($this->basePath('js/common.js'))        
             ->prependFile($this->basePath('js/jquery.toastmessage.js'))        
+            ->prependFile($this->basePath('js/free-jqgrid/plugins/ui.multiselect.js'))                    
+            ->prependFile($this->basePath('js/free-jqgrid/js/jquery.jqgrid.min.js'))                    
             ->prependFile($this->basePath('components/bootstrap/js/bootstrap.min.js'))            
-            ->prependFile($this->basePath('/js/jQuery.mmenu/dist/translations/ru/jquery.mmenu.ru.js'))                    
-            ->prependFile($this->basePath('/js/jQuery.mmenu/dist/jquery.mmenu.all.js'))                    
+            ->prependFile($this->basePath('js/jQuery.mmenu/dist/translations/ru/jquery.mmenu.ru.js'))                    
+            ->prependFile($this->basePath('js/jQuery.mmenu/dist/jquery.mmenu.all.js'))                    
+            ->prependFile($this->basePath('components/jqueryui/jquery-ui.min.js'))                
             ->prependFile($this->basePath('components/jquery/jquery.min.js'))                
         ?>
     </head>
@@ -32,7 +39,7 @@
                 <?= $this->megamenu()->RenderQuickMenu();?>
 	</div>     
         <?= $this->megamenu()->RenderMegaMenu("menu");?>
-        <div class="container-fluid">
+        <div class="container-fluid" id="maincontent" name="maincontent">
             <?php echo $this->mess()->renderErrorMessages(); ?>
             <?= $this->content ?>
             <?php echo $this->megamenu()->RenderBreadcrumbs(); ?>

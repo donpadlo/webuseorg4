@@ -9,6 +9,7 @@ class Auth{
  public static $id="";       // идентификатор из БД для авторизированного пользователя
  public static $randomid=""; // случайный идентификатор для печенек
  public static $salt="";     // соль для пароля зашифрованного по SHA1
+ public static $theme="base";// тема UI по умолчанию
  // базовые права
  public static $rules=[
      "admin"=> true,        // администратор
