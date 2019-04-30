@@ -1,4 +1,4 @@
-<div style="margin-top:20px">
+<div style="margin-top:10px">
   <table id="list1"></table>
   <div id="pager1"></div>
 </div>
@@ -9,12 +9,15 @@ $(document).ready(function(){
 				datatype: "json",				
                                 colNames:['Id','Архив','Логин','Пароль','Действия'],
                                 colModel:[
-                                        {name:'id',index:'id', width:55,editable:false,search: false},
-                                        {name:'archive',index:'archive', width:60,editable:true,formatter: 'checkbox',edittype: 'checkbox', editoptions: {value: '1:0'},search: false},
+                                        {name:'id',index:'id', width:55,editable:false,search: false,fixed:true},
+                                        {name:'archive',index:'archive', fixed:true,width:55,editable:true,formatter: 'checkbox',edittype: 'checkbox', editoptions: {value: '1:0'},search: false},
                                         {name:'login',index:'login', width:100,editable:true},
-                                        {name:'password',index:'password', width:100,editable:true,search: false},
-                                        {name:'myac', width:50, fixed:true, sortable:false, resize:false, formatter:'actions',formatoptions:{keys:true},search: false}
-                                ],  			
+                                        {name:'password',edittype: 'password',index:'password', width:100,editable:true,search: false},
+                                        {name:'myac', width:60, fixed:true, sortable:false, resize:false, formatter:'actions',formatoptions:{keys:true},search: false}
+                                ],  
+                                loadError: function (jqXHR) {
+                                    $().toastmessage('showSuccessToast',jqXHR.responseText);
+                                },   
 				sortname: 'id',
 				sortorder: 'asc',
 				sortable: true,
@@ -22,30 +25,32 @@ $(document).ready(function(){
 				pager: '#pager1',
 				viewrecords: true,
 				gridview: true,
+                                guiStyle: "bootstrap4",
+                                iconsOverText: true,
 				autowidth: true,
 				altRows: true,
 				closeOnEscape: true,
 				autoresizeOnLoad: true,
-				headertitles: true,
+				headertitles: true,                                                                                                
                                 editurl:"/user/listusers",
                                 caption:"Справочник пользователей"
-			});			
-			$("#list1").navGrid("#pager1",{
+			}).jqGrid("gridResize");
+			$("#list1").navGrid("#pager1",{                                
 				search: true,
 				add: true,
 				edit: true,
 				del: true,
 				refresh: true
 				},
-				{}, //edit options
-				{}, //add options
-				{}, //delete options
+				{errorTextFormat: commonError}, //edit options
+				{errorTextFormat: commonError}, //add options
+				{errorTextFormat: commonError}, //delete options
 				{
 					multipleSearch: true
 					,closeAfterSearch: true
 					,closeAfterReset: true									
 				}
-			);
+			);                        
                         jQuery('#list1').jqGrid('filterToolbar', {stringResult: true, searchOnEnter: false});						
                         // Выбор колонок                        
 			$("#list1").navButtonAdd('#pager1',{
@@ -59,4 +64,8 @@ $(document).ready(function(){
                         //Делаем таблицу резиновой
                         BindResizeble("#list1","#maincontent");
 		});	    
+function commonError(data) {
+    console.log(data.responseText);
+    return data.responseText;
+}                
 </script>    

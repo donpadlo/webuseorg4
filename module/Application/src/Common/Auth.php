@@ -118,6 +118,7 @@ public function ReadyCapcha($sessionid){
 public function LoginPOST(){    
     if ((CommonFunctions::_POST("login_login")!="") and (CommonFunctions::_POST("login_password")!="")){
         $sql="select * FROM users where login='".CommonFunctions::_POST("login_login")."' and password=SHA1(CONCAT(SHA1('".CommonFunctions::_POST("login_password")."'), users.salt)) and archive=0";
+        //die($sql);
         $result=Module::$sqln->ExecuteSQL($sql);
         while ($myrow = mysqli_fetch_array($result)) {
             self::$id = $myrow['id'];

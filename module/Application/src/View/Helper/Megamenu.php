@@ -143,27 +143,12 @@ class Megamenu extends AbstractHelper {
             echo "</ul>\n";
         echo "</nav>\n";
     }    
-    public function GetCurrentTitleByUrlSub($item,$res) {               
-        foreach ($items as $value) {            
-            if (($value["href"]==Module::$url) and (isset($value["title"])==true)){                
-                $res=$value["title"];  
-                break;
-            };
-            if (isset($value["title"])==true){
-                $res=Megamenu::GetCurrentTitleByUrlSub($value);                        
-            };
-        }
-        return $res;        
-    }
-    public function GetCurrentTitleByUrl() {       
-        $res="Без заголовка |";
+    public function GetCurrentTitleByUrl() {   
+        $res="";
         foreach (self::$dirtitems as $value) {            
             if (($value["href"]==Module::$url) and (isset($value["title"])==true)){                
-                $res=$value["title"]." | "; 
+                if ($value["title"]!="") $res=$value["title"]." | "; 
                 break;
-            };
-            if (isset($value["title"])==true){
-                $res=Megamenu::GetCurrentTitleByUrlSub($value,$res)." | ";                        
             };
         }
         if ((Module::$url=="") or (Module::$url=="/")) $res="";

@@ -85,5 +85,16 @@ public function SetByParam($sqlcn,$nameparam, $valparam){
     $result = $sqlcn->ExecuteSQL("UPDATE config SET value='$valparam' WHERE name='$nameparam'") or die('Неверный запрос Tcconfig.SetByParam: ' . mysqli_error($sqlcn->idsqlconnection));
 }
 
+public function GetTableParamByPost($context){
+    $res=array();
+        $res["oper"]=$context->params()->fromPost('oper', 'list');
+        $res["rows"]=$context->params()->fromQuery('rows', '');
+        $res["page"]=$context->params()->fromQuery('page', '');
+        $res["sidx"]=$context->params()->fromQuery('sidx', '');
+        $res["sord"]=$context->params()->fromQuery('sord', '');
+        $res["filters"]=$context->params()->fromQuery('filters', '');        
+    return $res;
+}
+
 }
 ?>
